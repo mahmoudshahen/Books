@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name" translatable="false">Books</string>
+    <string name="BASE_URL" translatable="false">https://www.googleapis.com/books/v1/volumes?q=time</string>
+    <string name="PRINT_TYPE" translatable="false">printType</string>
+    <string name="KEY_API" translatable="false">AIzaSyAxYhrD6ImqlN-03chrhBw4IizrMwHh_Xk</string>
+
+    <string name="setting">Setting</string>
+    <string name="download">Download</string>
+    <string name="share">Share</string>
+    <string name="web">Read Online</string>
+
+    <string name="type">Type</string>
+    <string name="key_list" translatable="false">list</string>
+    <string name="default_value" translatable="false">Online</string>
+
+    <string name="online" translatable="false">Online</string>
+    <string name="offline" translatable="false">Favorites</string>
+
+    <string name="appwidget_text">My Books</string>
+    <string name="add_widget">Add widget</string>
+
+    <string name="published_date">Published Date</string>
+    <string name="mark_favorite">MARK AS FAVOURITE</string>
+    <string name="description">Description</string>
+
+    <string name="read">Read online</string>
+    <string name="image">image</string>
+    <string name="no_internet">no internet connection</string>
+</resources>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "469433314071",
+    "firebase_url": "https://books-13124.firebaseio.com",
+    "project_id": "books-13124",
+    "storage_bucket": "books-13124.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:469433314071:android:b271665755ab7839",
+        "android_client_info": {
+          "package_name": "shahen.mahmoud.books"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "469433314071-vid94ikvrv8g549v05giitofp44l1ssl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgTCZZqh9Hw6nHjUpGgnFU_z-rF9jalAg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "469433314071-vid94ikvrv8g549v05giitofp44l1ssl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

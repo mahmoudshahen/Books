@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="@string/download"
+        android:id="@+id/mi_download"
+        android:icon="@android:drawable/arrow_down_float"
+        app:showAsAction="always"
+        android:contentDescription="@string/download"></item>
+    <item android:title="@string/share"
+        android:id="@+id/mi_share"
+        android:icon="@android:drawable/ic_menu_share"
+        app:showAsAction="always"
+        android:contentDescription="@string/share"
+        ></item>
+    <item android:icon="@android:drawable/ic_menu_slideshow"
+        android:title="@string/web"
+        app:showAsAction="always"
+        android:id="@+id/mi_online"
+        android:contentDescription="@string/read"
+        ></item>
+</menu>
