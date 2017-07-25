@@ -16,7 +16,7 @@ public class BookOpenHelper extends SQLiteOpenHelper {
     private static final String INTEGER_TYPE = " INTEGER";
     private static final String COMA_SEP = ",";
 
-    private static final String SQL_CREATE_ENTRIES = "CREATE TABLE " + BookContract.BookTable.TABLE_NAME + " ( "+
+    private static final String SQL_CREATE_ENTRIES = "CREATE TABLE " + BookContract.BookTable.TABLE_NAME + " ( " +
             BookContract.BookTable.COLUMN_NAME_ID + TEXT_TYPE + COMA_SEP +
             BookContract.BookTable.COLUMN_NAME_IMAGE + TEXT_TYPE + COMA_SEP +
             BookContract.BookTable.COLUMN_NAME_NAME + TEXT_TYPE + COMA_SEP +
@@ -24,12 +24,13 @@ public class BookOpenHelper extends SQLiteOpenHelper {
             BookContract.BookTable.COLUMN_NAME_PUBLISHED_DATE + TEXT_TYPE + COMA_SEP +
             BookContract.BookTable.COLUMN_NAME_ACSTOKENLINK + TEXT_TYPE + COMA_SEP +
             BookContract.BookTable.COLUMN_NAME_WEBREADERLINK + TEXT_TYPE + COMA_SEP +
-            BookContract.BookTable.COLUMN_NAME_IS_AVAILABLE + INTEGER_TYPE +" );";
+            BookContract.BookTable.COLUMN_NAME_IS_AVAILABLE + INTEGER_TYPE + " );";
     private static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXIST " + BookContract.BookTable.TABLE_NAME;
 
     public BookOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(SQL_CREATE_ENTRIES);

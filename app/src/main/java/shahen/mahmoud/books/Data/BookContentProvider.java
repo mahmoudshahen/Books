@@ -20,6 +20,7 @@ public class BookContentProvider extends ContentProvider {
     public static final short BOOKS = 100;
     public static final short BOOKS_WITH_ID = 101;
     public static final UriMatcher uriMatcher = buildUriMatcher();
+
     public static UriMatcher buildUriMatcher() {
         UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(BookContract.AUTHORITY, BookContract.PATH_BOOKS, BOOKS);
@@ -27,6 +28,7 @@ public class BookContentProvider extends ContentProvider {
 
         return uriMatcher;
     }
+
     @Override
     public boolean onCreate() {
         bookOpenHelper = new BookOpenHelper(getContext());
@@ -42,20 +44,20 @@ public class BookContentProvider extends ContentProvider {
         switch (uriMatcher.match(uri)) {
 
             case BOOKS: {
-                retCursor =  db.query(BookContract.BookTable.TABLE_NAME,
+                retCursor = db.query(BookContract.BookTable.TABLE_NAME,
                         strings, s, strings1, null, null, s1);
                 break;
             }
-            case  BOOKS_WITH_ID: {
+            case BOOKS_WITH_ID: {
                 retCursor = db.rawQuery("select* from " + BookContract.BookTable.TABLE_NAME + " WHERE " +
-                        BookContract.BookTable.COLUMN_NAME_ID + " = " + "\""+ s +"\"", null);
+                        BookContract.BookTable.COLUMN_NAME_ID + " = " + "\"" + s + "\"", null);
                 break;
             }
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
         retCursor.setNotificationUri(getContext().getContentResolver(), uri);
-        if(retCursor.isAfterLast())
+        if (retCursor.isAfterLast())
             return null;
 
         return retCursor;
@@ -73,16 +75,14 @@ public class BookContentProvider extends ContentProvider {
         SQLiteDatabase db = bookOpenHelper.getWritableDatabase();
         Uri returnUri;
 
-        switch (uriMatcher.match(uri)){
-            case BOOKS:{
+        switch (uriMatcher.match(uri)) {
+            case BOOKS: {
                 long newRowID;
                 newRowID = db.insert(BookContract.BookTable.TABLE_NAME, null, contentValues);
 
-                if(newRowID > 0)
-                {
+                if (newRowID > 0) {
                     returnUri = ContentUris.withAppendedId(BookContract.BookTable.CONTENT_URI, newRowID);
-                }
-                else
+                } else
                     throw new android.database.SQLException("Failed to insert row into " + uri);
                 break;
             }
@@ -96,7 +96,7 @@ public class BookContentProvider extends ContentProvider {
     @Override
     public int delete(@NonNull Uri uri, @Nullable String s, @Nullable String[] strings) {
         SQLiteDatabase db = bookOpenHelper.getWritableDatabase();
-        int count = db.delete(BookContract.BookTable.TABLE_NAME, BookContract.BookTable.COLUMN_NAME_ID +"="+ "\""+s+"\"", strings);
+        int count = db.delete(BookContract.BookTable.TABLE_NAME, BookContract.BookTable.COLUMN_NAME_ID + "=" + "\"" + s + "\"", strings);
 
         return count;
     }

@@ -12,11 +12,12 @@ public class Book implements Serializable {
     Boolean isAvailable;
 
     public void setIsAvailableInt(int i) {
-        if (i==1)
+        if (i == 1)
             isAvailable = true;
         else
             isAvailable = false;
     }
+
     public int getIsAvailableInt() {
         if (isAvailable)
             return 1;

@@ -12,7 +12,9 @@ public class BookContract {
     public static final String AUTHORITY = "shahen.mahmoud.books";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + AUTHORITY);
     public static final String PATH_BOOKS = "favourite";
-    private BookContract() {}
+
+    private BookContract() {
+    }
 
     public static abstract class BookTable implements BaseColumns {
 

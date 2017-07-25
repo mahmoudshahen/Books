@@ -21,9 +21,11 @@
 
     <string name="published_date">Published Date</string>
     <string name="mark_favorite">MARK AS FAVOURITE</string>
+    <string name="unmark_favorite">MARK AS UN FAVORITE</string>
     <string name="description">Description</string>
 
     <string name="read">Read online</string>
     <string name="image">image</string>
     <string name="no_internet">no internet connection</string>
+
 </resources>

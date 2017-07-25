@@ -25,6 +25,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     List<Book> bookList;
     Context context;
     final private ListItemClickListener listItemClickListener;
+
     public BookAdapter(List<Book> books, Context context, ListItemClickListener listener) {
         this.bookList = books;
         this.context = context;
@@ -33,7 +34,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.book_item,parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.book_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -58,6 +59,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
         ImageView imageView;
         TextView textView;
+
         public ViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.iv_image);
@@ -70,7 +72,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             listItemClickListener.onListItemClick(getAdapterPosition());
         }
     }
-    public interface ListItemClickListener{
+
+    public interface ListItemClickListener {
         void onListItemClick(int clickedItemIndex);
     }
 }

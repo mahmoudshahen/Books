@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 
-    def keystorePropertiesFile = file("E:\\MAL\\nanoDegreeProgram\\Capstone\\Capstone\\Books\\keystore.properties")
+    def keystorePropertiesFile = file("keystore.properties")
 
     // Initialize a new Properties() object called keystoreProperties.
     def keystoreProperties = new Properties()
@@ -13,7 +13,7 @@ android {
         config {
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
-            storeFile file("E:\\MAL\\nanoDegreeProgram\\Capstone\\Capstone\\Books\\android.jks")
+            storeFile file("android.jks")
             storePassword keystoreProperties['storePassword']
         }
     }

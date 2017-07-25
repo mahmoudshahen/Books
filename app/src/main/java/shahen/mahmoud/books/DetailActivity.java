@@ -28,6 +28,7 @@ public class DetailActivity extends AppCompatActivity {
     TextView titleTextView, dateTextView, descriptionTextView;
     Book book;
     Button addButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,12 +52,12 @@ public class DetailActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (addButton.getText().equals("MARK AS FAVOURITE")) {
+                if (addButton.getText().equals(getString(R.string.mark_favorite))) {
                     addDataBase();
-                    addButton.setText("MARK AS UN FAVORITE");
+                    addButton.setText(getString(R.string.unmark_favorite));
                 } else {
                     deleteDataBase();
-                    addButton.setText("MARK AS FAVOURITE");
+                    addButton.setText(getString(R.string.mark_favorite));
                 }
             }
         });
@@ -80,8 +81,7 @@ public class DetailActivity extends AppCompatActivity {
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(book.getAcsTokenLink()));
                     startActivity(browserIntent);
                     Log.v("uuu", book.getAcsTokenLink());
-                }
-                else
+                } else
                     Toast.makeText(this, book.getAcsTokenLink(), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.mi_share:
@@ -112,6 +112,7 @@ public class DetailActivity extends AppCompatActivity {
 
         Uri uri = this.getContentResolver().insert(BookContract.BookTable.CONTENT_URI, contentValues);
     }
+
     public void deleteDataBase() {
         this.getContentResolver().delete(BookContract.BookTable.CONTENT_URI, book.getId(), null);
     }
@@ -121,7 +122,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onResume();
         Cursor cursor = this.getContentResolver().query(BookContract.BookTable.CONTENT_URI_ID, null, book.getId(), null, null);
         if (cursor != null) {
-            addButton.setText("MARK AS UN FAVOURITE");
+            addButton.setText(getString(R.string.unmark_favorite));
         }
     }
 }

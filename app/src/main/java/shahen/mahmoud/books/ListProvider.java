@@ -18,15 +18,18 @@ import shahen.mahmoud.books.models.Book;
 public class ListProvider implements RemoteViewsService.RemoteViewsFactory {
     private Context context;
     private Cursor cursor;
+
     public ListProvider(Context context) {
         this.context = context;
         getData();
     }
+
     public void getData() {
         cursor = context.getContentResolver().query(BookContract.BookTable.CONTENT_URI,
                 new String[]{BookContract.BookTable.COLUMN_NAME_NAME}
-                ,null, null, null);
+                , null, null, null);
     }
+
     @Override
     public void onCreate() {
 
@@ -53,7 +56,7 @@ public class ListProvider implements RemoteViewsService.RemoteViewsFactory {
     public RemoteViews getViewAt(int i) {
         final RemoteViews remoteView = new RemoteViews(
                 context.getPackageName(), R.layout.widget_item);
-        if (cursor ==null)
+        if (cursor == null)
             return remoteView;
         cursor.moveToPosition(i);
         Log.v("weg", cursor.getString(cursor.getColumnIndex(BookContract.BookTable.COLUMN_NAME_NAME)));

@@ -8,8 +8,8 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 
 import android.support.v7.preference.PreferenceScreen;
-import shahen.mahmoud.books.R;
 
+import shahen.mahmoud.books.R;
 
 
 public class SettingFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {

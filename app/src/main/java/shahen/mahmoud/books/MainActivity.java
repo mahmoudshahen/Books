@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ListI
     SharedPreferences sharedPreferences;
     ProgressBar progressBar;
     final int LOADER_LOAD = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +67,7 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ListI
         if (savedInstanceState != null) {
             booksList = (List<Book>) savedInstanceState.getSerializable("books");
             setBookAdapter();
-        }
-        else if (state.equals(getString(R.string.offline)))
+        } else if (state.equals(getString(R.string.offline)))
             getLoaderManager().initLoader(LOADER_LOAD, null, this);
         else if (isNetworkAvailable(this))
             getBooks();
@@ -80,15 +80,15 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ListI
         //ca-app-pub-3424516490633842/6823075609
         adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
 
-        adView = (AdView)findViewById(R.id.adView);
+        adView = (AdView) findViewById(R.id.adView);
         AdRequest adRequestBuilder = new AdRequest.Builder().build();
         adView.loadAd(adRequestBuilder);
 
     }
 
     public void getBooks() {
-        String URL = getString(R.string.BASE_URL)+"&"+getString(R.string.PRINT_TYPE)+"=books&"+
-                    getString(R.string.KEY_API);
+        String URL = getString(R.string.BASE_URL) + "&" + getString(R.string.PRINT_TYPE) + "=books&" +
+                getString(R.string.KEY_API);
         Log.v("URL", (URL));
         progressBar.setVisibility(View.VISIBLE);
         Ion.with(this)
@@ -99,21 +99,21 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ListI
                     public void onCompleted(Exception e, JsonObject result) {
                         booksList.clear();
                         JsonArray jsonArray = result.get("items").getAsJsonArray();
-                        for (int i=0 ; i<jsonArray.size() ; i++) {
+                        for (int i = 0; i < jsonArray.size(); i++) {
                             Book book = new Book();
                             book.setId(jsonArray.get(i).getAsJsonObject().get("id").getAsString());
                             JsonObject volumeInfo = jsonArray.get(i).getAsJsonObject().get("volumeInfo").getAsJsonObject();
                             JsonObject accessInfo = jsonArray.get(i).getAsJsonObject().get("accessInfo").getAsJsonObject();
                             book.setTitle(volumeInfo.get("title").getAsString());
                             book.setPublishedDate(volumeInfo.get("publishedDate").toString().substring(1,
-                                    volumeInfo.get("publishedDate").toString().length()-1));
+                                    volumeInfo.get("publishedDate").toString().length() - 1));
                             if (volumeInfo.has("description"))
                                 book.setDescription(volumeInfo.get("description").toString().substring(1,
-                                        volumeInfo.get("description").toString().length()-1));
+                                        volumeInfo.get("description").toString().length() - 1));
                             else
                                 book.setDescription("No Description available");
                             book.setSmallThumbnail(volumeInfo.get("imageLinks").getAsJsonObject().get("smallThumbnail").getAsString()
-                            .substring(0, volumeInfo.get("imageLinks").getAsJsonObject().get("smallThumbnail").getAsString().length()-1));
+                                    .substring(0, volumeInfo.get("imageLinks").getAsJsonObject().get("smallThumbnail").getAsString().length() - 1));
                             if (accessInfo.has("webReaderLink"))
                                 book.setWebReaderLink(accessInfo.get("webReaderLink").getAsString());
                             else
@@ -124,14 +124,15 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ListI
                             else
                                 book.setAcsTokenLink("no download link available");
                             booksList.add(book);
-                            Log.v("books", book.getAvailable()+"");
+                            Log.v("books", book.getAvailable() + "");
                         }
                         bookAdapter.notifyDataSetChanged();
                         progressBar.setVisibility(View.INVISIBLE);
-                        Log.v("bookListSize", booksList.size()+"");
+                        Log.v("bookListSize", booksList.size() + "");
                     }
                 });
     }
+
     public void setBookAdapter() {
         bookAdapter = new BookAdapter(booksList, MainActivity.this, MainActivity.this);
         booksRecycler.setAdapter(bookAdapter);
@@ -139,7 +140,6 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ListI
 
     @Override
     public void onListItemClick(int clickedItemIndex) {
-        Toast.makeText(this, clickedItemIndex+"", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, DetailActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("book", booksList.get(clickedItemIndex));
@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ListI
         startActivity(intent);
 
     }
+
     public boolean isNetworkAvailable(final Context context) {
         return ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null;
     }
@@ -168,8 +169,9 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ListI
         }
         return true;
     }
+
     public void getBooksFromDataBase(Cursor cursor) {
-      //  Cursor cursor = this.getContentResolver().query(BookContract.BookTable.CONTENT_URI, null, null, null, null);
+        //  Cursor cursor = this.getContentResolver().query(BookContract.BookTable.CONTENT_URI, null, null, null, null);
 
         booksList.clear();
         if (cursor == null) {
@@ -218,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ListI
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         if (i == LOADER_LOAD)
-            return  new CursorLoader(this, BookContract.BookTable.CONTENT_URI, null, null, null, null);
+            return new CursorLoader(this, BookContract.BookTable.CONTENT_URI, null, null, null, null);
         return null;
     }
 
